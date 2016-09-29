@@ -350,12 +350,7 @@ static NSUInteger PSTVisibleAlertsCount = 0;
             [strongSelf performBlocks:PROPERTY(didDismissBlocks) withAction:strongSelf.executedAlertAction];
         };
 
-        [controller presentViewController:alertController animated:animated completion:^{
-            // Bild lifetime of self to the controller.
-            // Will not be called if presenting fails because another present/dismissal already happened during that runloop.
-            // rdar://problem/19045528
-            objc_setAssociatedObject(controller, _cmd, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        }];
+        [controller presentViewController:alertController animated:animated completion:nil];
 
     } else {
         if (self.preferredStyle == PSTAlertControllerStyleActionSheet) {
